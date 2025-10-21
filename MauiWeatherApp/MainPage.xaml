@@ -1,0 +1,51 @@
+﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:MauiWeatherApp.ViewModels"
+             x:Class="MauiWeatherApp.MainPage">
+
+    <ContentPage.BindingContext>
+        <vm:MainViewModel/>
+    </ContentPage.BindingContext>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15" HorizontalOptions="Center">
+
+            <Label Text="🌦 Smart Weather App" FontSize="28" FontAttributes="Bold" HorizontalOptions="Center"/>
+
+            <Button Text="Use My Location" 
+                    Command="{Binding GetWeatherByLocationCommand}" />
+
+            <Label Text="OR" HorizontalOptions="Center"/>
+
+            <HorizontalStackLayout>
+                <Entry Placeholder="Enter city name..."
+                       Text="{Binding CityQuery}" WidthRequest="200"/>
+                <Button Text="Find" Command="{Binding GetWeatherByCityCommand}" />
+            </HorizontalStackLayout>
+
+            <Picker Title="Select a city"
+                    ItemsSource="{Binding CityResults}"
+                    SelectedItem="{Binding SelectedCity}"
+                    ItemDisplayBinding="{Binding Name}" />
+
+            <Button Text="Get Weather"
+                    Command="{Binding Path=FetchWeatherCommand}"
+                    IsEnabled="{Binding SelectedCity}"
+                    IsVisible="False"/>
+            <!-- optional placeholder -->
+
+            <ActivityIndicator IsRunning="{Binding IsLoading}" IsVisible="{Binding IsLoading}" />
+
+            <Border IsVisible="{Binding CurrentWeather}" Padding="15" WidthRequest="300" BackgroundColor="#f7f7f7">
+                <VerticalStackLayout HorizontalOptions="Center">
+                    <Label Text="{Binding CurrentWeather.Location}" FontSize="20" FontAttributes="Bold"/>
+                    <Image Source="{Binding CurrentWeather.Icon}" WidthRequest="100" HeightRequest="100"/>
+                    <Label Text="{Binding CurrentWeather.Condition}" FontSize="18"/>
+                    <Label Text="{Binding CurrentWeather.Temperature, StringFormat='Temperature: {0} °C'}"/>
+                    <Label Text="{Binding CurrentWeather.WindSpeed, StringFormat='Wind: {0} km/h'}"/>
+                </VerticalStackLayout>
+            </Border>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
