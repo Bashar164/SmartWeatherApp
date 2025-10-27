@@ -61,5 +61,5 @@ The app demonstrates best practices in **MVVM architecture**, data binding, and 
 
 ### 🔹 Setup
 ```bash
-git clone https://github.com/bashar164/SmartWeatherApp.git
+git clone https://github.com/bashar267/SmartWeatherApp.git
 cd SmartWeatherApp
