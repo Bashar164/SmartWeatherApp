@@ -1,7 +1,7 @@
 <h1 align="center">🌦️ Smart Weather App</h1>
 
 <p align="center">
-  <img src="Resources/Images/sunny.png" width="100" alt="Weather Icon"/>
+  <img src="MauiWeatherApp/Resources/Images/sunny.png" width="100" alt="Weather Icon"/>
 </p>
 
 <p align="center">
